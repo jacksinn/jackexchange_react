@@ -15,6 +15,8 @@ function App() {
   // TODO: Challenge: Create a List of Courses
   //  Can I see a list of courses?
   //  Bonus: Can I see how many videos are in a course?
+  //  Bonus: Make the list of courses use a course component and 
+  //    pass the component values with props.
 
   // TODO: Challenge: Create a Course View
   //  Can I view the course?
