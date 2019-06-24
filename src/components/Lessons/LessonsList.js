@@ -1,6 +1,7 @@
 import React from 'react'
+import Lesson from './Lesson';
 
-export default function LessonsFunc(props) {
+export default function LessonsList(props) {
   let lessons = [
     'Lesson 1',
     'Lesson 2',
@@ -11,7 +12,7 @@ export default function LessonsFunc(props) {
       {
         // Iterating over the lessons to output
         lessons.map(lesson => {
-          return <p>{lesson}</p>
+          return <Lesson lesson={lesson}></Lesson>
         })
       }
       {props.children}
