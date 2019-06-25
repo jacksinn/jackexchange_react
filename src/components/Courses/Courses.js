@@ -17,9 +17,11 @@ export default function Courses(props) {
 
   return (
     <div>
-      {courses.map(course => {
-        return <Course course={course}></Course>
-      })}
+      <ul>
+        {courses.map(course => {
+          return <li><Course name={course.name}></Course></li>
+        })}
+      </ul>
     </div>
   )
 }

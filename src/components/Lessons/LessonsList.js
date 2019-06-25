@@ -3,8 +3,11 @@ import Lesson from './Lesson';
 
 export default function LessonsList(props) {
   let lessons = [
-    'Lesson 1',
-    'Lesson 2',
+    {
+      'name': 'Lesson 1',
+    }, {
+      'name': 'Lesson 2',
+    }
   ]
 
   return (
@@ -12,7 +15,7 @@ export default function LessonsList(props) {
       {
         // Iterating over the lessons to output
         lessons.map(lesson => {
-          return <Lesson lesson={lesson}></Lesson>
+          return <Lesson lesson={lesson.name}></Lesson>
         })
       }
       {props.children}
