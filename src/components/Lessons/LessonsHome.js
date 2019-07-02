@@ -29,8 +29,6 @@ export default function LessonsHome(props) {
       ])
       .then(
         axios.spread((composerRes, drupalConsoleRes) => {
-          console.log(composerRes.data);
-          console.log(drupalConsoleRes.data);
           const result = {
             ...composerRes,
             ...drupalConsoleRes

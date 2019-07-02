@@ -1,32 +1,28 @@
-import React from 'react'
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia'
-import { makeStyles } from '@material-ui/core/styles';
-import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import CardActions from '@material-ui/core/CardActions'
+import React from "react";
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
+import { makeStyles } from "@material-ui/core/styles";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import CardActions from "@material-ui/core/CardActions";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
+    height: "100%",
+    display: "flex",
+    flexDirection: "column"
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%" // 16:9
   },
   cardContent: {
-    flexGrow: 1,
-  },
+    flexGrow: 1
+  }
 }));
 
 export default function Challenge(props) {
-
-
-
   const classes = useStyles();
-
 
   return (
     <Card className={classes.card}>
@@ -39,18 +35,12 @@ export default function Challenge(props) {
         <Typography gutterBottom variant="h5" component="h2">
           {props.name}
         </Typography>
-        <Typography>
-          This is a media card. You can use this section to describe the content.
-        </Typography>
+        <Typography>{props.body}</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">
-          View
-        </Button>
-        <Button size="small">
-          + Add to My Challenges
-        </Button>
+        <Button size="small">View</Button>
+        <Button size="small">+ Add to My Challenges</Button>
       </CardActions>
     </Card>
-  )
+  );
 }

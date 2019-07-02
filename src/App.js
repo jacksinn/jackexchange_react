@@ -10,6 +10,22 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import HomepageHero from "./components/Hero/HomepageHero";
 import TopAppBar from "./components/AppBar/TopAppBar";
+import { ApolloClient } from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+
+// import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { HttpLink } from "apollo-link-http";
+
+const cache = new InMemoryCache();
+const link = new HttpLink({
+  uri: "http://localhost:8000/graphql"
+});
+
+const client = new ApolloClient({
+  cache,
+  link
+});
 
 const theme = createMuiTheme({
   palette: {
@@ -43,49 +59,51 @@ export default function App() {
   const classes = useStyles();
 
   return (
-    <ThemeProvider theme={theme}>
-      <React.Fragment>
-        <CssBaseline />
-        {/*Top Navigation*/}
-        <TopAppBar />
-        <main>
-          {/* Hero unit */}
-          <HomepageHero />
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={theme}>
+        <React.Fragment>
+          <CssBaseline />
+          {/*Top Navigation*/}
+          <TopAppBar />
+          <main>
+            {/* Hero unit */}
+            <HomepageHero />
 
-          {/* Lessons */}
-          <Container className={classes.cardGrid} maxWidth="md">
-            <h1>Lessons Available</h1>
-            <LessonsHome />
-          </Container>
+            {/* Lessons */}
+            <Container className={classes.cardGrid} maxWidth="md">
+              <h1>Lessons Available</h1>
+              <LessonsHome />
+            </Container>
 
-          {/* Courses */}
-          <Container className={classes.cardGrid} maxWidth="md">
-            <h1>Courses</h1>
-            <CoursesHome />
-          </Container>
+            {/* Courses */}
+            <Container className={classes.cardGrid} maxWidth="md">
+              <h1>Courses</h1>
+              <CoursesHome />
+            </Container>
 
-          {/* Challenges */}
-          <Container className={classes.cardGrid} maxWidth="md">
-            <h1>Challenges</h1>
-            <ChallengesHome />
-          </Container>
-        </main>
-        {/* Footer */}
-        <footer className={classes.footer}>
-          <Typography variant="h6" align="center" gutterBottom>
-            Footer
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            align="center"
-            color="textSecondary"
-            component="p"
-          >
-            Something here to give the footer a purpose!
-          </Typography>
-        </footer>
-        {/* End footer */}
-      </React.Fragment>
-    </ThemeProvider>
+            {/* Challenges */}
+            <Container className={classes.cardGrid} maxWidth="md">
+              <h1>Challenges</h1>
+              <ChallengesHome />
+            </Container>
+          </main>
+          {/* Footer */}
+          <footer className={classes.footer}>
+            <Typography variant="h6" align="center" gutterBottom>
+              Footer
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              align="center"
+              color="textSecondary"
+              component="p"
+            >
+              Something here to give the footer a purpose!
+            </Typography>
+          </footer>
+          {/* End footer */}
+        </React.Fragment>
+      </ThemeProvider>
+    </ApolloProvider>
   );
 }
