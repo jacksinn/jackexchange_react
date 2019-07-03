@@ -1,7 +1,5 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
@@ -16,7 +14,7 @@ import Home from "./pages/Home";
 import ChallengesHome from "./components/Challenges/ChallengesHome";
 import CoursesHome from "./components/Courses/CoursesHome";
 import LessonsHome from "./components/Lessons/LessonsHome";
-import Lessons from "./components/Lessons/Lessons";
+import Footer from "./components/Navigation/Footer";
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
@@ -35,17 +33,6 @@ const theme = createMuiTheme({
   }
 });
 
-const useStyles = makeStyles(thexme => ({
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8)
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6)
-  }
-}));
-
 // TODO: Add in List of Lessons
 // TODO: Add in Lesson View
 
@@ -57,42 +44,31 @@ const useStyles = makeStyles(thexme => ({
 //  Can I view the course?
 
 export default function App() {
-  const classes = useStyles();
-
   return (
     <ApolloProvider client={client}>
-      <ThemeProvider theme={theme}>
-        <React.Fragment>
-          <CssBaseline />
-          <ResponsiveDrawer>
-            <BrowserRouter>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <React.Fragment>
+            <CssBaseline />
+            <ResponsiveDrawer>
+              {/* Home Route */}
               <Route path="/" exact render={() => <Home />} />
+              {/* Challenges Route */}
               <Route
                 path="/challenges"
                 exact
                 render={() => <ChallengesHome />}
               />
+              {/* Lessons Route */}
               <Route path="/lessons" exact render={() => <LessonsHome />} />
-              <Route path="/courses" exact render={() => <CoursesHome />} />
-            </BrowserRouter>
-          </ResponsiveDrawer>
-          {/* Footer */}
-          <footer className={classes.footer}>
-            <Typography variant="h6" align="center" gutterBottom>
-              Footer
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              align="center"
-              color="textSecondary"
-              component="p"
-            >
-              Something here to give the footer a purpose!
-            </Typography>
-          </footer>
-          {/* End footer */}
-        </React.Fragment>
-      </ThemeProvider>
+              {/* Courses Route */}
+              <Route path="/playbooks" exact render={() => <CoursesHome />} />
+            </ResponsiveDrawer>
+            {/* Footer */}
+            <Footer />
+          </React.Fragment>
+        </ThemeProvider>
+      </BrowserRouter>
     </ApolloProvider>
   );
 }

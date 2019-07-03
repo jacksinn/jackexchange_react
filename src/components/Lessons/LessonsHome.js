@@ -1,9 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Grid from "@material-ui/core/Grid";
-
-import Lesson from "./Lesson";
-import axios from "axios";
-import striptags from "striptags";
+import React from "react";
 import Lessons from "./Lessons";
 
 export default function LessonsHome(props) {

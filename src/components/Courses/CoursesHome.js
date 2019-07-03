@@ -5,15 +5,19 @@ import Course from "./Course";
 export default function CoursesHome(props) {
   let courses = [
     {
+      id: "asdfads",
       name: "Course 1"
     },
     {
+      id: "asdger",
       name: "Course 2"
     },
     {
+      id: "olkfdgs",
       name: "Course 3"
     },
     {
+      id: "dfsikgj",
       name: "Course 4"
     }
   ];

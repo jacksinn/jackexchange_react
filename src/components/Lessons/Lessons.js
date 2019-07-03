@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
-
-import Lesson from "./Lesson";
 import axios from "axios";
 import striptags from "striptags";
 import LessonGridItem from "./LessonGridItem";
@@ -30,11 +28,11 @@ export default function Lessons(props) {
       ])
       .then(
         axios.spread((composerRes, drupalConsoleRes) => {
-          const result = {
-            ...composerRes,
-            ...drupalConsoleRes
-          };
-          setLessons(result.data);
+          const result = [
+            ...composerRes.data.data,
+            ...drupalConsoleRes.data.data
+          ];
+          setLessons(result);
         })
       );
   }, []);
@@ -42,13 +40,15 @@ export default function Lessons(props) {
   return lessons ? (
     <Grid container spacing={4}>
       {// Iterating over the lessons to output
-      lessons.data.map(lesson => {
+      lessons.map(lesson => {
         return (
           <LessonGridItem
             id={lesson.id}
+            key={lesson.id}
             name={lesson.attributes.name}
             body={striptags(lesson.attributes.field_instructions.value)}
             apiLink={lesson.links.self.href}
+            type={lesson.type}
           />
         );
       })}
