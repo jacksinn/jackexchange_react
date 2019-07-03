@@ -2,20 +2,21 @@ import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import LessonsHome from "./components/Lessons/LessonsHome";
-import CoursesHome from "./components/Courses/CoursesHome";
-import ChallengesHome from "./components/Challenges/ChallengesHome";
+
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import HomepageHero from "./components/Hero/HomepageHero";
-import TopAppBar from "./components/AppBar/TopAppBar";
 import { ApolloClient } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
-
-// import { ApolloClient } from 'apollo-client';
+import { BrowserRouter } from "react-router-dom";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { HttpLink } from "apollo-link-http";
+import ResponsiveDrawer from "./components/Navigation/Drawers/ResponsiveDrawer";
+import { Route } from "react-router-dom";
+import Home from "./pages/Home";
+import ChallengesHome from "./components/Challenges/ChallengesHome";
+import CoursesHome from "./components/Courses/CoursesHome";
+import LessonsHome from "./components/Lessons/LessonsHome";
+import Lessons from "./components/Lessons/Lessons";
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
@@ -63,30 +64,18 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <React.Fragment>
           <CssBaseline />
-          {/*Top Navigation*/}
-          <TopAppBar />
-          <main>
-            {/* Hero unit */}
-            <HomepageHero />
-
-            {/* Lessons */}
-            <Container className={classes.cardGrid} maxWidth="md">
-              <h1>Lessons Available</h1>
-              <LessonsHome />
-            </Container>
-
-            {/* Courses */}
-            <Container className={classes.cardGrid} maxWidth="md">
-              <h1>Courses</h1>
-              <CoursesHome />
-            </Container>
-
-            {/* Challenges */}
-            <Container className={classes.cardGrid} maxWidth="md">
-              <h1>Challenges</h1>
-              <ChallengesHome />
-            </Container>
-          </main>
+          <ResponsiveDrawer>
+            <BrowserRouter>
+              <Route path="/" exact render={() => <Home />} />
+              <Route
+                path="/challenges"
+                exact
+                render={() => <ChallengesHome />}
+              />
+              <Route path="/lessons" exact render={() => <LessonsHome />} />
+              <Route path="/courses" exact render={() => <CoursesHome />} />
+            </BrowserRouter>
+          </ResponsiveDrawer>
           {/* Footer */}
           <footer className={classes.footer}>
             <Typography variant="h6" align="center" gutterBottom>
