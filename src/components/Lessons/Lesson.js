@@ -1,29 +1,14 @@
 import React, { useState } from "react";
-import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/core/styles";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import Axios from "axios";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import SimpleSnackbar from "../Feedback/Snackbars/SimpleSnackbar";
-import { Link } from "react-router-dom";
 import { LessonParseType } from "../../utils/LessonParse";
+import MainCard from "../Cards/MainCard";
 
 const useStyles = makeStyles(theme => ({
-  card: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column"
-  },
-  cardMedia: {
-    paddingTop: "56.25%", // 16:9
-    backgroundColor: "purple"
-  },
-  cardContent: {
-    flexGrow: 1
-  },
   drupalConsole: {
     backgroundColor: "deepskyblue",
     textAlign: "center"
@@ -82,21 +67,13 @@ export default function Lesson(props) {
   };
 
   return (
-    <Card className={classes.card}>
-      <div
-        className={style(type)}
-        // image="https://source.unsplash.com/random"
-        title="Image title"
-      >
-        <h1>{typeText}</h1>
-      </div>
-      <CardContent className={classes.cardContent}>
-        <Typography gutterBottom variant="h5" component="h2">
-          {props.name}
-        </Typography>
-        <Typography>{props.body}</Typography>
-        {extras}
-      </CardContent>
+    <MainCard
+      name={props.name}
+      body={props.body}
+      extras={extras}
+      headerClass={style(type)}
+      title={typeText}
+    >
       <CardActions>
         <Button
           size="small"
@@ -115,18 +92,61 @@ export default function Lesson(props) {
             sizeEvent(!viewButton);
           }}
         >
-          <Link
-            to={{
-              hash: "#" + props.id
-            }}
-          >
-            {viewText}
-          </Link>
+          {viewText}
         </Button>
         <SimpleSnackbar size="small" message={<>{props.name} Added</>}>
           + Add to my lessons
         </SimpleSnackbar>
       </CardActions>
-    </Card>
+    </MainCard>
   );
+
+  // return (
+  //   <Card className={classes.card}>
+  //     <div
+  //       className={style(type)}
+  //       // image="https://source.unsplash.com/random"
+  //       title="Image title"
+  //     >
+  //       <h1>{typeText}</h1>
+  //     </div>
+  //     <CardContent className={classes.cardContent}>
+  //       <Typography gutterBottom variant="h5" component="h2">
+  //         {props.name}
+  //       </Typography>
+  //       <Typography>{props.body}</Typography>
+  //       {extras}
+  //     </CardContent>
+  //     <CardActions>
+  //       <Button
+  //         size="small"
+  //         onClick={() => {
+  //           if (!viewButton) {
+  //             Axios.get(
+  //               props.apiLink +
+  //                 "?include=field_screenshot,field_screenshot.field_media_image"
+  //             ).then(data => {
+  //               setLesson(data.data);
+  //             });
+  //           } else {
+  //             setLesson(undefined);
+  //           }
+  //           setViewButton(!viewButton);
+  //           sizeEvent(!viewButton);
+  //         }}
+  //       >
+  //         <Link
+  //           to={{
+  //             hash: "#" + props.id
+  //           }}
+  //         >
+  //           {viewText}
+  //         </Link>
+  //       </Button>
+  //       <SimpleSnackbar size="small" message={<>{props.name} Added</>}>
+  //         + Add to my lessons
+  //       </SimpleSnackbar>
+  //     </CardActions>
+  //   </Card>
+  // );
 }
