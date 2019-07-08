@@ -1,21 +1,28 @@
 import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
 
+// Material UI
+import CssBaseline from "@material-ui/core/CssBaseline";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
+
+// API fetching
 import { ApolloClient } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
-import { BrowserRouter } from "react-router-dom";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { HttpLink } from "apollo-link-http";
-import ResponsiveDrawer from "./components/Navigation/Drawers/ResponsiveDrawer";
+
+// Routing
+import { BrowserRouter } from "react-router-dom";
 import { Route } from "react-router-dom";
+
+// Custom-ish components
 import Home from "./pages/Home";
 import ChallengesHome from "./components/Challenges/ChallengesHome";
 import CoursesHome from "./components/Courses/CoursesHome";
 import LessonsHome from "./components/Lessons/LessonsHome";
 import Footer from "./components/Navigation/Footer";
 import Playbooks from "./components/Playbooks/Playbooks";
+import ResponsiveDrawer from "./components/Navigation/Drawers/ResponsiveDrawer";
 
 // Setup caching for Apollo
 const cache = new InMemoryCache();
@@ -38,16 +45,6 @@ const theme = createMuiTheme({
     type: "dark"
   }
 });
-
-// TODO: Add in List of Lessons
-// TODO: Add in Lesson View
-
-// TODO: Homework: Create a List of Courses
-//  Can I see a list of courses?
-//  Can I see how many videos are in a course?
-
-// TODO: Homework: Create a Course View
-//  Can I view the course?
 
 export default function App() {
   return (

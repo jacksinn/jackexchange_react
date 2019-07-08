@@ -8,7 +8,7 @@ export default function LessonGridItem(props) {
 
   const changeSize = size => {
     setSize(size);
-    console.log("changesize");
+    // console.log("changesize");
   };
 
   return (
