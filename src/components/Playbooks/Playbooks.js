@@ -2,14 +2,11 @@ import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import striptags from "striptags";
-import LessonGridItem from "./LessonGridItem";
+import PlaybookGridItem from "./PlaybookGridItem";
 
-export default function Lessons(props) {
-  // Setting up lessons to use state
+export default function Playbooks(props) {
   const [lessons, setLessons] = useState();
 
-  // Grabbing the JSONAPI endpionts for the lessons entity type
-  // "The Effect Hook lets you perform side effects in function components"
   useEffect(() => {
     axios
       .all([
@@ -30,14 +27,11 @@ export default function Lessons(props) {
         )
       ])
       .then(
-        // Once we have all the rsults (via the promises)
         axios.spread((composerRes, drupalConsoleRes) => {
-          // Populate the result array using the spread operator on the entity types
           const result = [
             ...composerRes.data.data,
             ...drupalConsoleRes.data.data
           ];
-          // Update state to store the lessons
           setLessons(result);
         })
       );
@@ -48,7 +42,7 @@ export default function Lessons(props) {
       {// Iterating over the lessons to output
       lessons.map(lesson => {
         return (
-          <LessonGridItem
+          <PlaybookGridItem
             id={lesson.id}
             key={lesson.id}
             name={lesson.attributes.name}
@@ -60,7 +54,6 @@ export default function Lessons(props) {
       })}
     </Grid>
   ) : (
-    // If no results yet just display loading text
     <div>Loading...</div>
   );
 }

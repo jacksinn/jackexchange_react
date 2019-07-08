@@ -15,17 +15,23 @@ import ChallengesHome from "./components/Challenges/ChallengesHome";
 import CoursesHome from "./components/Courses/CoursesHome";
 import LessonsHome from "./components/Lessons/LessonsHome";
 import Footer from "./components/Navigation/Footer";
+import Playbooks from "./components/Playbooks/Playbooks";
 
+// Setup caching for Apollo
 const cache = new InMemoryCache();
+
+// Setup the path for graphql
 const link = new HttpLink({
   uri: "http://localhost:8000/graphql"
 });
 
+// Initialize the Apollo Constructor
 const client = new ApolloClient({
   cache,
   link
 });
 
+// Create a theme for Material UI
 const theme = createMuiTheme({
   palette: {
     // type: 'light',
@@ -45,11 +51,16 @@ const theme = createMuiTheme({
 
 export default function App() {
   return (
+    // Telling app we'll be using Apollo for child componenets
     <ApolloProvider client={client}>
+      {/* Setup for Routing*/}
       <BrowserRouter>
+        {/* Setup the theme */}
         <ThemeProvider theme={theme}>
           <React.Fragment>
+            {/* "Kickstart an elegant, consistent, and simple baseline to build upon" */}
             <CssBaseline />
+            {/* Responsive drawer compnenet that also contains the content for the page*/}
             <ResponsiveDrawer>
               {/* Home Route */}
               <Route path="/" exact render={() => <Home />} />
@@ -61,8 +72,10 @@ export default function App() {
               />
               {/* Lessons Route */}
               <Route path="/lessons" exact render={() => <LessonsHome />} />
+              {/* Playbooks Route */}
+              <Route path="/playbooks" exact render={() => <Playbooks />} />
               {/* Courses Route */}
-              <Route path="/playbooks" exact render={() => <CoursesHome />} />
+              <Route path="/courses" exact render={() => <CoursesHome />} />
             </ResponsiveDrawer>
             {/* Footer */}
             <Footer />

@@ -6,6 +6,7 @@ import { Query } from "react-apollo";
 import striptags from "striptags";
 import Challenge from "./Challenge";
 
+// Setup the GraphQL query
 const GET_CHALLENGES = gql`
   query challengesQuery {
     nodes(filter: { type: "challenge" }) {
@@ -23,6 +24,10 @@ const GET_CHALLENGES = gql`
 `;
 
 export default function Challenges() {
+  // In the return we wrap the output in a Query component and pass the GraphQL query
+  //  If it's loading, we note that, if there are errors, same, and once we have data
+  //  then we pass along the data to the challenge component
+  // TODO: Setup the Grid component like the Lessons Grid component
   return (
     <Query query={GET_CHALLENGES}>
       {({ loading, error, data }) => {

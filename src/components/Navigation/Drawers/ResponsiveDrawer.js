@@ -72,7 +72,9 @@ export default function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar}>
+        {/* Top navigation links */}
         <List>
+          {/* Home / Logo Link */}
           <ListItem button key="home">
             <ListItemIcon>
               <Home />
@@ -111,8 +113,8 @@ export default function ResponsiveDrawer(props) {
           </Link>
         </ListItem>
 
-        {/* Courses Link*/}
-        <ListItem button key="courses">
+        {/* Playbooks Link*/}
+        <ListItem button key="playbooks">
           <ListItemIcon>
             <LibraryBooks />
           </ListItemIcon>
@@ -121,6 +123,19 @@ export default function ResponsiveDrawer(props) {
             style={{ color: "inherit", textDecoration: "none" }}
           >
             <ListItemText primary="Playbooks" />
+          </Link>
+        </ListItem>
+
+        {/* Courses Link*/}
+        <ListItem button key="courses">
+          <ListItemIcon>
+            <LibraryBooks />
+          </ListItemIcon>
+          <Link
+            to="/courses"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            <ListItemText primary="Courses" />
           </Link>
         </ListItem>
       </List>
@@ -164,7 +179,7 @@ export default function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            {/* TODO: Insert Page title  */}
+            {/* TODO: Insert Page title? Add Search?  */}
             Home
           </Typography>
         </Toolbar>
@@ -200,6 +215,7 @@ export default function ResponsiveDrawer(props) {
           </Drawer>
         </Hidden>
       </nav>
+      {/* Main Content */}
       <main className={classes.content}>
         <div className={classes.toolbar} />
         {props.children}

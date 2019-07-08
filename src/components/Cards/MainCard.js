@@ -16,6 +16,9 @@ const useStyles = makeStyles(theme => ({
   },
   cardContent: {
     flexGrow: 1
+  },
+  headerText: {
+    fontSize: "2.2em"
   }
 }));
 
@@ -26,7 +29,7 @@ export default function MainCard(props) {
   return (
     <Card className={classes.card}>
       <div className={props.headerClass}>
-        <h1>{props.title}</h1>
+        <h1 className={classes.headerText}>{props.title}</h1>
       </div>
       <CardContent className={classes.cardContent}>
         <Typography gutterBottom variant="h5" component="h2">

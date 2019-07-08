@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Lesson(props) {
+export default function Playbook(props) {
   // Setting up state for the lesson and viewButton
   const [lesson, setLesson] = useState();
   const [viewButton, setViewButton] = useState();
