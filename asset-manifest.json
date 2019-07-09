@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/jackexchange_react/static/css/main.34de6062.chunk.css",
+    "main.js": "/jackexchange_react/static/js/main.ba52b5bb.chunk.js",
+    "main.js.map": "/jackexchange_react/static/js/main.ba52b5bb.chunk.js.map",
+    "runtime~main.js": "/jackexchange_react/static/js/runtime~main.adbd1594.js",
+    "runtime~main.js.map": "/jackexchange_react/static/js/runtime~main.adbd1594.js.map",
+    "static/js/2.49407ccd.chunk.js": "/jackexchange_react/static/js/2.49407ccd.chunk.js",
+    "static/js/2.49407ccd.chunk.js.map": "/jackexchange_react/static/js/2.49407ccd.chunk.js.map",
+    "index.html": "/jackexchange_react/index.html",
+    "precache-manifest.12f004e3b3384debd968d617382f7d4f.js": "/jackexchange_react/precache-manifest.12f004e3b3384debd968d617382f7d4f.js",
+    "service-worker.js": "/jackexchange_react/service-worker.js",
+    "static/css/main.34de6062.chunk.css.map": "/jackexchange_react/static/css/main.34de6062.chunk.css.map"
+  }
+}
